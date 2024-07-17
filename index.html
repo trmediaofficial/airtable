@@ -1,31 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Custom Airtable Interface</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Sidebar</title>
     <style>
-      body,
-      html {
+      body {
+        font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        height: 100%;
-        overflow: hidden;
+        background-color: #f4f4f4;
       }
-      iframe {
-        width: 100%;
+      .sidebar {
         height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #333;
+        padding-top: 20px;
+        transition: 0.3s;
+      }
+      .sidebar a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+      }
+      .sidebar a:hover {
+        background-color: #575757;
+      }
+      .main {
+        margin-left: 250px;
+        padding: 15px;
+      }
+      .open-btn {
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #333;
+        color: white;
+        padding: 10px 15px;
         border: none;
+      }
+      .open-btn:hover {
+        background-color: #575757;
+      }
+      @media screen and (max-width: 600px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+        .sidebar a {
+          float: left;
+        }
+        .main {
+          margin-left: 0;
+        }
       }
     </style>
   </head>
   <body>
-    <iframe
-      class="airtable-embed"
-      src="https://airtable.com/embed/appylko58uaQHcmjB/shrnJfBFZJ4ZM3R4Y"
-      frameborder="0"
-      onmousewheel=""
-      width="100%"
-      height="533"
-      style="background: transparent; border: 1px solid #ccc"
-    ></iframe>
+    <div class="sidebar" id="mySidebar">
+      <a href="photos/index.html">Photos</a>
+      <a href="photos/form/index.html">Upload Photos</a>
+    </div>
+
+    <div class="main">
+      <button class="open-btn" onclick="toggleSidebar()">☰ Open Sidebar</button>
+      <h2>Responsive Sidebar Example</h2>
+      <p>
+        Click on the hamburger menu/icon to open the sidebar, and push this
+        content to the right.
+      </p>
+      <p>This example demonstrates a basic sidebar that is mobile-friendly.</p>
+    </div>
+
+    <script>
+      function toggleSidebar() {
+        var sidebar = document.getElementById("mySidebar");
+        if (sidebar.style.width === "250px" || sidebar.style.width === "") {
+          sidebar.style.width = "0";
+          document.querySelector(".main").style.marginLeft = "0";
+        } else {
+          sidebar.style.width = "250px";
+          document.querySelector(".main").style.marginLeft = "250px";
+        }
+      }
+    </script>
   </body>
 </html>
